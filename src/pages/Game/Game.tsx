@@ -30,20 +30,20 @@ const Game = () => {
       setUserDetails(data);
     } catch (error) {
       Cookies.remove("access_token");
-      navigate("/");
+      navigate("/", { replace: true });
     }
   };
 
   useEffect(() => {
     const accessToken: string = Cookies.get("access_token")!;
     if (!accessToken) {
-      navigate("/");
+      navigate("/", { replace: true });
     }
     getUserDetails(accessToken);
   }, [navigate]);
 
   const onSignOut = () => {
-    navigate("/");
+    navigate("/", { replace: true });
     Cookies.remove("access_token");
   };
 
